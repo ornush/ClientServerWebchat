@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="webclient.css">
+<title>Login</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=3.0">
+
+<body>
+    <section id="intro">
+        <div class="left-col">
+            <img src="loggin.jpg" id="log" alt="LA" class="centerpicture">
+
+            <h1>Login <br> and start chatting! </h1>
+            <p>fill up yor details -> </p>
+            <!-- image-->
+            <!-- buttons-->
+        </div>
+
+
+        <div class="container"></div>
+        <div class="right-col">
+
+            <div class="form-container">
+                <!--form-->
+                <form action="#">
+                    <div class="field-group">
+                        <label for="uname" id="username"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" id="input-name" name="username" required>
+
+                        <div id="error"></div>
+                        <div id="error5"></div>
+
+
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="pswd" required>
+                        <div id="error3"></div>
+                        <div id="error6" style="color:red;"></div>
+
+
+                        <p id="refresh" style="color:red;"><b> if you want to fill your details and try again please
+                                refresh the page</b></p>
+                        <span class="psw">Not registered? <a href="webclient.html">Click here</a></span>
+
+                        <button type="submit" id="signUpButton">Login</button>
+                        
+                        <!-- onclick="redirect();" -->
+                        <!-- <label><input type="checkbox" checked="checked" id="rememberme" name="remember" style="color:white"> Remember me</label> -->
+                    </div>
+                </form>
+
+
+            </div>
+
+
+        </div>
+    </section>
+
+    <script src="login.js"></script>
+    <!-- <script src="chat.js"></script> -->
+
+</body>
+
+</html>

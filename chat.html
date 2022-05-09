@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+
+    <!-- Bootstrap modal -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link href=" chat.css" rel="stylesheet">
+    <title>chat</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row no-gutters">
+            <!-- left side -->
+            <div class="col-md-4  border-right">
+                <div id="myUser">
+                    <!-- ///////////modal search-->
+
+                    <div class="modal" id="my_modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span
+                                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                    <h4 class="modal-title">Add New Contant</h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <input id="txt" class="form-control" autofocus="autofocus"
+                                            placeholder="Contant's identifier" />
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button id="save" type="save" class="btn btn-primary" data-dismiss="modal"
+                                        onclick="addContact()">Add</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ///////////modal  finsh -->
+
+
+                </div>
+
+
+
+                <!-- class of each friend -->
+                <div class="contacts" id="contacts"></div>
+                <hr>
+            </div>
+
+            <!-- right side chat side -->
+            <div class="col-md-8" id="logIn">
+            </div>
+            <div class="col-md-8" id="signup">
+            </div>
+            <div class="col-md-8" id="userPage">
+                <div class="settings-traysettings-tray">
+                    <div class="friend-drawer no-gutters friend-drawer--grey">
+                        <img class="profile-image">
+
+                        <div class="text">
+                            <h6 class="user-name"></h6>
+                        </div>
+                        <span class="settings-tray--right">
+                            <!-- icons -->
+
+                        </span>
+                    </div>
+                </div>
+                <div class="chat-panel">
+                    <div id="messages">
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="chat-box-tray">
+                                <input type="text" placeholder="Type your message here..." id="myMsg">
+
+                                <!-- icons -->
+
+                                <div class="dropup">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="menu1"
+                                        data-toggle="dropdown">
+                                        <i class="bi bi-paperclip" style="color: black; "></i></button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
+                                                <!-- picture button -->
+                                                <label for="picture-upload"> <i class="bi bi-image"
+                                                        style="color: black; float: right;"></i></label>
+                                                <input type="file" accept="image/*" id="picture-upload" name="picture"
+                                                    required>
+                                            </a></li>
+
+
+
+
+
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
+                                                <!-- video button -->
+                                                <label for="video-upload"> <i class="bi bi-camera-reels"
+                                                        style="color: black; float: right;"></i></label>
+                                                <input type="file" accept="video/*" id="video-upload" name="video"
+                                                    required>
+                                            </a></li>
+
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
+                                                <label for="txt-upload"> <i class="bi bi-file-text"
+                                                        style="color: black; float: right;"></i></label>
+                                                <input type="file" accept=".txt" id="txt-upload" name="txt" required>
+                                            </a>
+                                        </li>
+
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">
+                                                <!-- record button -->
+                                                <button id="record1">
+                                                    <i class="bi bi-mic"
+                                                        style="color: black; float: right;"></i></button>
+
+                                                <button id="record2">
+                                                    <i class="bi bi-mic-mute"
+                                                        style="color: red; float: right;"></i></button>
+
+                                                <script>
+                                                    record1.onclick = () => {
+                                                        navigator.mediaDevices.getUserMedia({ audio: true })
+                                                            .then(stream => {
+                                                                mediaRecorder = new MediaRecorder(stream);
+                                                                mediaRecorder.start();
+                                                                chuck = []
+                                                                mediaRecorder.addEventListener("dataavailable", e => {
+                                                                    chuck.push(e.data);
+                                                                })
+                                                                mediaRecorder.addEventListener("stop", e => {
+                                                                    blob = new Blob(chuck)
+                                                                    audio_url = URL.createObjectURL(blob)
+                                                                    audio = new Audio(audio_url)
+                                                                    audio.setAttribute("controls", 1)
+                                                                    recordUpload(audio);
+                                                                })
+                                                            })
+                                                    }
+                                                    record2.onclick = () => {
+                                                        mediaRecorder.stop();
+                                                        mediaRecorder.stream.getTracks() // get all tracks from the MediaStream
+                                                            .forEach(track => track.stop()); // stop each of them                                        
+                                                    }
+                                                </script>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <i class="bi bi-send" style="color: black; float: right; cursor:pointer;"
+                                    onclick="sendButton()"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="chat.js"></script>
+<!-- <body onload="GFG_Fun()" class="cats"></body> -->
+
+</html>
