@@ -1,7 +1,7 @@
  # WebClient Project 
 
 
-We wrote a webClient chat that contains at least 5 members chatting with each other. 
+I wrote a webClient chat that contains at least 5 members chatting with each other. 
 In the chat you can interact and send masseges like sounds records, pictures, files, videos and text.
 
 what you'll need to install:<br />1.run "npm install" in the root folder  
@@ -49,4 +49,4 @@ you will need to enter your:
 
 In This Project We have used js,HTML,bootsrap and CSS.<br /> 
 
-#### writers:  Orna Tapeta, Shimon Avraham 
+#### writer:  Orna Tapeta 
